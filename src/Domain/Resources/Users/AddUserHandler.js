@@ -5,7 +5,7 @@ class AddUserHandler {
 
     async execute(data) {
         let userResp = await this.store.Users.addUser(data);
-        console.log(userResp);
+        return userResp
     }
 }
 

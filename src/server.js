@@ -1,15 +1,18 @@
-// Import the Express.js module
-const express = require('express');
-
-// Create an instance of the Express application
+const express = require('express')
 const app = express();
-
-// Define a route
-const webAPI = require("./WebAPI/user");
-app.use('/user', webAPI);
-
-// Start the server on a specific port (e.g., 3000)
+const dotenv = require('dotenv')
+const webAPI = require("./WebAPI/user")
+dotenv.config();
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use((req,res,next)=>{
+  console.log('request:', req.body,req.url);
+  next()
+})
+app.use('/users', webAPI);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

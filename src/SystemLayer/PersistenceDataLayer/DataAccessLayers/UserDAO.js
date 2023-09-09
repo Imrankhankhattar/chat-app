@@ -3,6 +3,7 @@ class UserDAO {
     constructor() { }
 
     async AddUser(data) {
+        return data
     }
 
 }
