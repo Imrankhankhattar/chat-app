@@ -7,7 +7,7 @@ function DataService(data) {
         data: this.data,
 
         addUser: async function (userData) {
-            return await UserDAO.AddUser(userData);
+            return await new UserDAO().AddUser(userData);
         }
 
 

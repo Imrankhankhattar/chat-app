@@ -2,9 +2,10 @@ const express = require('express')
 const app = express();
 const dotenv = require('dotenv')
 const webAPI = require("./WebAPI/user")
+const connectDB = require('./bin/db')
 dotenv.config();
 const PORT = process.env.PORT || 3000;
-
+connectDB()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req,res,next)=>{
