@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
 
+app.get('/create-user', (req, res) => {
+    
+    res.send('Hello, Express!');
+  });
+
 // Start the server on a specific port (e.g., 3000)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
