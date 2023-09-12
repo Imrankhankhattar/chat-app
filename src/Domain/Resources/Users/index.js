@@ -1,3 +1,8 @@
-let AddUserHandler = require('./AddUserHandler');
+const AddUserHandler = require('./AddUserHandler');
+const LoginUserHandler = require('./LoginUserHandler');
 
-module.exports = {AddUserHandler};
+
+module.exports = {
+    AddUserHandler,
+    LoginUserHandler
+};
