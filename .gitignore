@@ -157,3 +157,4 @@ dist
 
 ./.env
 ./node_modules
+./vscode
