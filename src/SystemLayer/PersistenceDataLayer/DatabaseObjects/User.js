@@ -16,7 +16,11 @@ const schema = new Mongoose.Schema({
   countryCode :{
     type: Number,
     default: 92
-  } 
+  } ,
+  status : {
+    type: String,
+    default: 'inactive'
+  }
 
 }, {
   timestamps: true

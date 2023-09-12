@@ -1,4 +1,5 @@
 const Users = require('../DatabaseObjects/User')
+const senOtp = require('../../../Services/twilio')
 class UserDAO {
 
     constructor() { }
@@ -7,7 +8,8 @@ class UserDAO {
         const newUser = new Users(data)
         const res = await newUser.save() 
         if(res && res._id){
-            return {success:true,status: 200,  message:"User created successfully"}
+            senOtp(data.contact)
+            return {success:true,status: 200,  message:"OTP sent!"}
         }
         return {success:false, message:"User creation failed"}
     }
