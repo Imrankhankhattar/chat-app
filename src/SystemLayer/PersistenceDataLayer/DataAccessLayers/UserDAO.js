@@ -22,16 +22,17 @@ class UserDAO {
     async VerifyUser(data, login = false) {
         let user = await getData(`user:${data.contact}`);
         if (user) {
-            validateOTP(this.key, data.OTP);
-            if (login) {
+            const result = validateOTP(this.key, data.OTP);
+            if (result && login) {
                 return { success: true, status: 200, message: "OTP Verified!" }
-            } else {
+            } else if (result) {
                 const newUser = new Users(data)
                 const res = await newUser.save()
                 if (res && res._id) {
                     senOtp(data.contact)
                     return { success: true, status: 200, message: "OTP Verified!" }
                 }
+            } else {
                 return { success: false, message: "Invalid OTP Provided!" }
             }
         }
