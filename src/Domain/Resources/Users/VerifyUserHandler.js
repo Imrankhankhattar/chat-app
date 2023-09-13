@@ -1,12 +1,12 @@
-class AddUserHandler {
+class VerifyUserHandler {
     constructor(dataService) {
         this.store = dataService;
     }
 
     async execute(data) {
-        let userResp = await this.store.Users.addUser(data);
+        let userResp = await this.store.Users.verifyUser(data);
         return userResp
     }
 }
 
-module.exports = AddUserHandler;
+module.exports = VerifyUserHandler;
