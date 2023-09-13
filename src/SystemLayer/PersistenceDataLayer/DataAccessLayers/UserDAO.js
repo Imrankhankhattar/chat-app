@@ -1,5 +1,5 @@
 const Users = require('../DatabaseObjects/User');
-const senOtp = require('../../../Services/twilio');
+const sendOtp = require('../../../Services/twilio');
 const { generateOTP, validateOTP } = require('../../../Services/SpeakEasy');
 const { setData, getData } = require('../../../Services/redis')
 class UserDAO {
@@ -13,7 +13,7 @@ class UserDAO {
         const OTP = generateOTP();
         this.key = OTP.key;
         // OTP sent to the user using twilio service
-        senOtp(data.contact, OTP);
+        sendOtp(data.contact, OTP);
         // Store user data in Redis
         setData(`user:${data.contact}`, data);
         return { success: true, status: 200, message: "OTP sent!" }
@@ -29,7 +29,6 @@ class UserDAO {
                 const newUser = new Users(data)
                 const res = await newUser.save()
                 if (res && res._id) {
-                    senOtp(data.contact)
                     return { success: true, status: 200, message: "OTP Verified!" }
                 }
             } else {
